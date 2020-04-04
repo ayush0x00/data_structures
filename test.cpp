@@ -9,7 +9,7 @@ int main(){
 
   *p=20;
   std::cout << p << '\n';
-  std::cout << *pp << '\n';
+  std::cout << **pp << '\n';
   std::cout << q << '\n';
   std::cout << x << '\n';
 
