@@ -41,6 +41,7 @@ void append_at(Node*head,int position, int data){
 void delete_head(Node**head_ref){
   Node* temp=*head_ref;
   *head_ref=temp->next;
+  //temp->next=NULL;
   delete(temp);
   std::cout << "Address of new head node-------"<<*head_ref << '\n';
 
@@ -48,11 +49,28 @@ void delete_head(Node**head_ref){
 }
 
 void delete_end_node(Node*head){
-  return;
+  while(head->next->next!=NULL){
+    head=head->next;
+  }
+  delete(head->next->next);
+  head->next=NULL;
 }
 
 void delete_node_at(Node*head,int position){
-  return;
+  int pos=1;
+  if (position==0){
+    std::cout << "not allowed" << '\n';
+  }
+  else{
+    Node* prev=new Node;
+    while(pos!=position){
+      prev=head;
+      head=head->next;
+      pos+=1;
+    }
+    prev->next=head->next;
+    delete(head);
+  }
 }
 
 void printlist(Node* head){
@@ -70,10 +88,15 @@ int main(){
   append(head,98);
   append(head,89);
   append(head,300);
+  append(head,34);
   append_at(head,2,69);
+  append_at(head,3,41);
   std::cout << "Address of previous head node ------"<<head<< '\n';
   delete_head(&head);
-  std::cout <<"Address of current head ----------"<< head << '\n';
+  std::cout <<"Address of current head after fuction call----------"<< head << '\n';
+  delete_end_node(head);
+  printlist(head);
+  delete_node_at(head,3);
   printlist(head);
   return 0;
 
