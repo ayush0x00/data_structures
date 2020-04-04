@@ -15,8 +15,14 @@ void add_head(Node** head,int data){
   //std::cout << head << '\n';
 
 }
-void append(Node** head,int data){
-  return;
+void append(Node*head,int data){
+  Node* new_node=new Node;
+  while(head->next!=NULL){
+    head=head->next;
+  }
+  head->next=new_node;
+  new_node->data=data;
+  new_node->next=NULL;
 }
 
 void printlist(Node* head){
@@ -33,6 +39,8 @@ int main(){
   //std::cout << head << '\n';
   add_head(&head,56);//we need to pass the address of head so to have a call by referenece.
   add_head(&head,76);
+  append(head,98);
+  append(head,89);
   //std::cout << head << '\n';
   printlist(head);
   return 0;
