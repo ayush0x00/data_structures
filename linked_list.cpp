@@ -1,27 +1,27 @@
 #include <iostream>
-#include <cstddef>
 
-struct Node{
+class Node{
+public:
   int data;
-  Node* next=NULL;
+  Node* next=nullptr;
 };
 
 void add_head(Node** head_ref,int data){
   Node* new_node=new Node;
   new_node->data=data;
-  new_node->next=NULL;
+  new_node->next=nullptr;
   *head_ref=new_node;
   std::cout << "Address of node-->" <<new_node->data<<"-----"<<new_node <<'\n';
 }
 
 void append(Node*head,int data){
   Node* new_node=new Node;
-  while(head->next!=NULL){
+  while(head->next!=nullptr){
     head=head->next;
   }
   head->next=new_node;
   new_node->data=data;
-  new_node->next=NULL;
+  new_node->next=nullptr;
   std::cout << "Address of node-->" <<new_node->data<<"----"<<new_node <<'\n';
 }
 
@@ -41,7 +41,7 @@ void append_at(Node*head,int position, int data){
 void delete_head(Node**head_ref){
   Node* temp=*head_ref;
   *head_ref=temp->next;
-  //temp->next=NULL;
+  //temp->next=nullptr;
   delete(temp);
   std::cout << "Address of new head node-------"<<*head_ref << '\n';
 
@@ -49,11 +49,11 @@ void delete_head(Node**head_ref){
 }
 
 void delete_end_node(Node*head){
-  while(head->next->next!=NULL){
+  while(head->next->next!=nullptr){
     head=head->next;
   }
   delete(head->next->next);
-  head->next=NULL;
+  head->next=nullptr;
 }
 
 void delete_node_at(Node*head,int position){
@@ -74,12 +74,11 @@ void delete_node_at(Node*head,int position){
 }
 
 void printlist(Node* head){
-  Node* head_node=head;
-  while (head_node!=NULL) {
-    std::cout << head_node->data << "->";
-    head_node=head_node->next;
+  while (head!=nullptr) {
+    std::cout << head->data << "->";
+    head=head->next;
   }
-  std::cout << "NULL" << '\n';
+  std::cout << "nullptr" << '\n';
 }
 
 int main(){
