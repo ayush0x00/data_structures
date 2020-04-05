@@ -52,13 +52,13 @@ void delete_end_node(Node*head){
   while(head->next->next!=nullptr){
     head=head->next;
   }
-  delete(head->next->next);
+  delete(head->next);
   head->next=nullptr;
 }
 
 void delete_node_at(Node*head,int position){
   int pos=1;
-  if (position==0){
+  if (position==1){
     std::cout << "not allowed" << '\n';
   }
   else{
