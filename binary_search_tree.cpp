@@ -43,6 +43,24 @@ void add_node(Node* root, int data){
   }
 }
 
+void searchbst(Node* root, int val){
+  if(root==nullptr){
+    std::cout << "Value not found" << '\n';
+    return;
+  }
+  if (root->data==val){
+    std::cout << "Value found at address -->" <<root<< '\n';
+    return;
+  }
+
+  else if(val<root->data){
+    searchbst(root->left_child,val);
+  }
+  else if(val>root->data){
+    searchbst(root->right_child,val);
+}
+}
+
 void display(Node* root){
   //std::cout << root->data <<"-->";
   if (root==nullptr){
@@ -94,6 +112,7 @@ int main(){
   add_node(root,96);
   add_node(root,95);
   add_node(root,104);
+  searchbst(root,78);
   //add_node(root,199);
   //add_node(root,2354);
 
