@@ -1,5 +1,4 @@
 #include <iostream>
-
 class Node{
 public:
   int data;
@@ -62,15 +61,11 @@ void searchbst(Node* root, int val){
 }
 
 void display(Node* root){
-  //std::cout << root->data <<"-->";
   if (root==nullptr){
     return;
   }
   else{
-  //Node* root=root;
-  //std::cout << root->data <<"-->";
   if(root->right_child==nullptr && root->left_child==nullptr){
-    //std::cout << "null";
     return;
   }
   if(root->right_child!=nullptr && root->left_child!=nullptr){
@@ -81,24 +76,41 @@ void display(Node* root){
   }
   else if(root->right_child==nullptr){
     std::cout << root->left_child->data << '\n';
-    //root=root->left_child;
-    //display(root);
+
   }
   else if(root->left_child==nullptr){
     std::cout << root->right_child->data << '\n';
-    //root=root->right_child;
-    //display(root);
+
   }
 
-
-
-  //display(root->left_child);
-  //display(root->right_child);
-  //std::cout << "null" << '\n';
-  //display(temp->right_child);
   std::cout<< '\n';
 }
 
+}
+
+void preorder(Node* root){
+  if(root==nullptr){
+    return;
+  }
+  std::cout << root->data <<"->";
+  preorder(root->left_child);
+  preorder(root->right_child);
+}
+
+void inorder(Node* root){
+  if (root==nullptr)
+  return;
+  inorder(root->left_child);
+  std::cout << root->data <<"->";
+  inorder(root->right_child);
+}
+
+void postorder(Node* root){
+  if(root==nullptr)
+  return;
+  postorder(root->left_child);
+  postorder(root->right_child);
+  std::cout << root->data <<"->" ;
 }
 
 
@@ -113,10 +125,11 @@ int main(){
   add_node(root,95);
   add_node(root,104);
   searchbst(root,78);
-  //add_node(root,199);
-  //add_node(root,2354);
-
-  display(root);
-  //std::cout << "Value and address of root after all function calls-->" <<root->data<<"--"<<root<< '\n';
+  preorder(root);
+  std::cout <<"null"<< '\n';
+  postorder(root);
+  std::cout <<"null"<< '\n';
+  inorder(root);
+  std::cout << "null"<<'\n';
   return 0;
 }
