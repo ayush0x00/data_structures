@@ -7,4 +7,5 @@ Follow the steps to compile and run the **.cpp** files.
 3. type command **\.\/\<output_file_name\>**
 
 Further implementations of data structures will be added.
+Along with the implementations of data structure, this repo will also contain implementation of **algorithms** which are quite of a use.
 **Feel free to try out the implementations in other languages as well**
