@@ -3,15 +3,15 @@
 class Date{
 public:
   Date(int day, int month, int year); //constructor
-  int Day(){return day_;}
-  int Month(){return month_;}
-  int Year(){return year_;}
+  int Day() const {return day_;}
+  int Month() const {return month_;}
+  int Year() const {return year_;}
   void Month(int month);
   void Year(int year);
   void Day(int day);
 private:
-  bool IsLeapYear(int year) ;//const says that member will not change the state of object
-  int DaysInMonth(int month, int year) ;
+  bool IsLeapYear(int year) const ;//const says that member will not change the state of object
+  int DaysInMonth(int month, int year) const;
   int day_{1};
   int month_{1};
   int year_{2000};
@@ -24,7 +24,7 @@ Date::Date(int day,int month,int year ){//passing year as initilizer list as it 
 }
 
 void Date:: Day(int day){
-  if(day>=1 && day<=DaysInMonth(Month(),Year())){
+  if(day>=1 && day<=DaysInMonth(Month(),Year())){//SInce DaysInMonth isnt public member of class,it cant access day directly
     day_=day;
   }
 }
@@ -35,13 +35,13 @@ void Date::Month(int month){
 void Date::Year(int year){
   year_=year;
 }
-bool Date::IsLeapYear(int year) {
+bool Date::IsLeapYear(int year) const {
   if (year%4==0 && year%100!=0)
     return true;
   else if (year%400==0)
     return true;
 }
-int Date::DaysInMonth(int month,int year) {
+int Date::DaysInMonth(int month,int year) const {
   if (month==2){
     return IsLeapYear(year)?29:28;
   }
