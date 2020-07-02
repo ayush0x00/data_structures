@@ -3,16 +3,19 @@
 #include <vector>
 using namespace std;
 int savkono(std::vector<int> soldier_power,int pain_strength){
+    //std::cout << soldier_power[0] << '\n';
     int hit=0;
-    while(pain_strength<=0||soldier_power.empty()){
+    while(pain_strength>0 && !soldier_power.empty()){
       sort(soldier_power.begin(),soldier_power.end());
-      if(soldier_power[0]>0){
-        pain_strength-=soldier_power[0];
-        soldier_power[0]/=2;
+      std::cout <<"soldier_power = "<< soldier_power.back()<<" ";
+      if(soldier_power.back()>0){
+        std::cout << " current pain_strength = " <<pain_strength<< '\n';
+        pain_strength-=soldier_power.back();
+        soldier_power.back()/=2;
         ++hit;
       }
       else{
-        soldier_power.erase(soldier_power.begin());
+        soldier_power.pop_back();
       }
     }
     if(pain_strength>0){
