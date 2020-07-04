@@ -18,7 +18,7 @@ int savkono(std::vector<int> soldier_power,int pain_strength){
         soldier_power.pop_back();
       }
     }
-    if(pain_strength>0){
+    if(pain_strength>0){ =
       return 0;
     }
     else{
