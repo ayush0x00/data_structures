@@ -19,7 +19,7 @@ int findDigits(int n) {
         cin>>number;
         vector<int>digits=all_digits(number);
         for(int j=0;j<digits.size();j++){
-          //std::cout << digits[j] << '\n';
+          // std::cout << digits[j] << '\n';
             if(number%digits[j]==0)
             counter++;
         }
