@@ -12,7 +12,7 @@ bool probability(int i,int j, char incoming[],char outgoing[] ){
 }
 
 int main(){
-  ifstream input("test_input.txt");
+  ifstream input("final_input.txt");
   ofstream output("output.txt",std::ofstream::trunc);
   int test;
   input>>test;
@@ -38,29 +38,28 @@ int main(){
         if(i==j)
           {
             possibility[i][j]='Y';
-            std::cout << "possibility to travel from " <<i+1<<"\t"<<j+1<< " = "<<possibility[i][j]<< '\n';
+          //  std::cout << "possibility to travel from " <<i+1<<"\t"<<j+1<< " = "<<possibility[i][j]<< '\n';
           }
         else if(abs((i-j))==1 && outgoing[i]=='Y' && incoming[j]=='Y')
           {
             possibility[i][j]='Y';
-            std::cout << "possibility to travel from " <<i+1<<"\t"<<j+1<< " = "<<possibility[i][j]<< '\n';
+            //std::cout << "possibility to travel from " <<i+1<<"\t"<<j+1<< " = "<<possibility[i][j]<< '\n';
           }
-        else if(abs((i-j))!=1 && i>j){
+        else if(abs((i-j))!=1){
           if(i>j){
             int flag=0;
             int temp_i=i,temp_j=j;
-            std::cout << "----Checking possibility to travel from---- " <<i+1<<"\t"<<j+1<< '\n';
+            //std::cout << "----Checking possibility to travel from---- " <<i+1<<"\t"<<j+1<< '\n';
             while(temp_i>j){
               //std::cout << " possibility to travel from " <<temp_i+1<<"\t"<<temp_i<< " = "<<possibility[temp_i][temp_i-1]<< '\n';
               if(probability(temp_i,temp_i-1,incoming,outgoing)){
-                std::cout << "Positive possibility to travel from " <<temp_i+1<<"\t"<<temp_i<< '\n';
+                //std::cout << "Positive possibility to travel from " <<temp_i+1<<"\t"<<temp_i<< '\n';
                 flag++;
-                temp_i=temp_j+1;
-                --temp_j;
+                --temp_i;
               }
               else
                 {
-                  std::cout << "negative possibility to travel from " <<i+1<<"\t"<<j+1<< '\n';
+                  //std::cout << "negative possibility to travel from " <<i+1<<"\t"<<j+1<< '\n';
                   break;
                 }
             }
@@ -70,14 +69,36 @@ int main(){
             else
               possibility[i][j]='N';
         }
+        if(i<j){
+          int flag=0;
+          int temp_i=i;
+          //std::cout << "*****Checking possibility to travel from***** " <<i+1<<"\t"<<j+1<< '\n';
+          while(temp_i<j){
+            if(probability(temp_i,temp_i+1,incoming,outgoing)){
+              //std::cout << "****Positive possibility to travel from*** " <<temp_i+1<<"\t"<<temp_i+2<< '\n';
+              flag++;
+              ++temp_i;
+              //--temp_j;
+            }
+            else
+              {
+                //std::cout << "**negative possibility to travel from** " <<i+1<<"\t"<<j+1<< '\n';
+                break;
+              }
+          }
+          //std::cout << "Value of flag for " <<i <<'\t'<<j<<'\t'<<flag<<'\n';
+          if(flag==(j-i))
+            possibility[i][j]='Y';
+          else
+            possibility[i][j]='N';
+          }
+        }
       }
-
     }
-  }
     for(int i=0;i<n;i++){
       for(int j=0;j<n;j++)
-        cout<<possibility[i][j];
-      cout  << '\n';
+        output<<possibility[i][j];
+      output<<'\n';
     }
   }
   return 0;
